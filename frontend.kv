@@ -1,4 +1,41 @@
+<MyLabel>:
+    text: root.text_
+
+
 <HomeScreen>:
-    MDScreen:
-        MDLabel:
-            text: 'Hello'
+    MDBoxLayout:
+        padding: 25
+        orientation: 'vertical'
+        MDTextField:
+            id: text
+            multiline: True
+        MDBoxLayout:
+            size_hint: None ,None
+            height: self.minimum_height
+            pos_hint: {'center_x': 0.5}
+            spacing: 15
+            MDRectangleFlatIconButton:
+                id: button
+                text: 'Run'
+                icon: 'play'
+                on_release: root.run()
+            MDRectangleFlatIconButton:
+                text: 'Error log'
+                icon: 'alert'
+                on_release: root.goto_error_log()
+
+
+
+<ErrorLogScreen>:
+    MDBoxLayout:
+        padding: 25, 0, 25, 0
+        MDScrollView:
+            MDBoxLayout:
+                size_hint: None, None
+                height: self.minimum_height
+                id: container
+                MDLabel:
+                    id: log_text
+                    size_hint: None, None
+                    height: self.texture_size[1]
+                    width: root.width - 50
